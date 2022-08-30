@@ -1,0 +1,12 @@
+
+<h1>Welcome Folks !!!!</h1>
+
+<h3>Here is the list of employees </h3>
+<ol>
+  <% @users.each do |user| %>
+    <li>
+      <span> <b>Name:</b> <%= "#{user.first_name} #{user.last_name}"%> </span> |
+      <span> <b>Email:</b> <%= user.email %> </span>
+    </li>
+  <% end %>
+</ol>
