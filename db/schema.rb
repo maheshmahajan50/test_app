@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_30_162541) do
+ActiveRecord::Schema.define(version: 2022_08_30_165338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "insurances", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.decimal "premium_amount", precision: 10, scale: 2, default: "0.0"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "insurances_users", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "insurance_id"
+    t.index ["insurance_id"], name: "index_insurances_users_on_insurance_id"
+    t.index ["user_id"], name: "index_insurances_users_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
