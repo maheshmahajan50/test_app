@@ -7,6 +7,9 @@
     <li>
       <span> <b>Name:</b> <%= "#{user.first_name} #{user.last_name}"%> </span> |
       <span> <b>Email:</b> <%= user.email %> </span>
+      <span> <b>Role:</b> <%= user.role %> </span>
+      <span> <%= link_to 'Show', user_path(user) %> </span>
+      <span> <%= link_to 'Update', edit_user_path(user) if current_user == user %> </span>
     </li>
   <% end %>
 </ol>

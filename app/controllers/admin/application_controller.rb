@@ -7,9 +7,16 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_admin
+    before_action :employee_access!
 
     def authenticate_admin
-      # TODO Add authentication logic here.
+      current_user.admin?
+    end
+
+    def employee_access!
+      if current_user.employee? && request.path.starts_with?('/admin')
+        redirect_to root_path
+      end
     end
 
     # Override this value to specify the number of elements to display at a time

@@ -11,6 +11,10 @@
   <body>
     <% if user_signed_in? %>
       <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+      <br>
+      <% if current_user.admin? %>
+        <%= link_to "Admin Panel", admin_root_path, method: :get %>
+      <% end %>
     <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
